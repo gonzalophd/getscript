@@ -1,12 +1,16 @@
 import streamlit as st
 import pandas as pd
+import requests
+from io import StringIO
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import time
 
 
 # Load the CSV file
-df = pd.read_csv('https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/DB_companies.csv?token=GHSAT0AAAAAACTMXN2RBYS66VE247RF4P44ZTGCZ5Q')
+url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/DB_companies.csv'
+response = requests.get(url)
+df = pd.read_csv(StringIO(response.text))
 
 # Load a pre-trained SentenceTransformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')

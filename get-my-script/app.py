@@ -6,7 +6,7 @@ import time
 
 
 # Load the CSV file
-df = pd.read_csv('https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/DB_companies.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/DB_companies.csv?token=GHSAT0AAAAAACTMXN2RBYS66VE247RF4P44ZTGCZ5Q')
 
 # Load a pre-trained SentenceTransformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')

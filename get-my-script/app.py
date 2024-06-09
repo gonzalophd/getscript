@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import time
+import streamlit.web.cli as stcli
 
 # Load the CSV file
 df = pd.read_csv('DB_companies.csv')

@@ -1,4 +1,4 @@
-﻿Script Name,Description,Path
+﻿Script Name,Descripcion,Path
 Create_Obs_GWV_h,"Leer dos archivos: Información de los pozos (Puede tener varias columnas) y observaciones en formato MACHI (Pozo/Fecha/Value), y genera un archivo importable de GWV con los pozos de observacion. ",Documentos\Create_Obs_GWV_h
 elevmatrix2GWV,"Lee una matriz de elevaciones (una columna por capa, asume misma cantidad de nodos por capa) y genera un archivo importable de top y otro de bottom, con el formato nodo/Elev, importable directamente en GWV: ",Documentos\elevmatrix2GWV
 script_lst2csv_sel,"Lee un archivo LST, y genera un archivo resumen con el balance de las componentes guardades en el archivo LST. Puede leer un archivo externo con las componentes del balance especificas que se quieren leer (relevantes). ",Documentos\script_lst2csv_sel

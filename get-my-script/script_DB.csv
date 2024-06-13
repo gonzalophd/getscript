@@ -1,0 +1,37 @@
+﻿Script Name,Description,Path
+Create_Obs_GWV_h,"Leer dos archivos: Información de los pozos (Puede tener varias columnas) y observaciones en formato MACHI (Pozo/Fecha/Value), y genera un archivo importable de GWV con los pozos de observacion. ",Documentos\Create_Obs_GWV_h
+elevmatrix2GWV,"Lee una matriz de elevaciones (una columna por capa, asume misma cantidad de nodos por capa) y genera un archivo importable de top y otro de bottom, con el formato nodo/Elev, importable directamente en GWV: ",Documentos\elevmatrix2GWV
+script_lst2csv_sel,"Lee un archivo LST, y genera un archivo resumen con el balance de las componentes guardades en el archivo LST. Puede leer un archivo externo con las componentes del balance especificas que se quieren leer (relevantes). ",Documentos\script_lst2csv_sel
+get_hds_SPXX,"Lee un archivo .hds, y extrae el valor de los heads para todos los nodos, en un SP especifico. Esto puede servir como condicion inicial de otro archivo",Documentos\get_hds_SPXX
+get_hds_cln_SPXX,"Lee un archivo .cln_hds (cuando se opta por extraer el hds del CLN de manera anexa), y extrae el valor de los heads para todos los nodos, en un SP especifico. Esto puede servir como condicion inicial de otro archivo",Documentos\get_hds_cln_SPXX
+model2vtk,"Script pensado para leer archivos de un modelo Modflow-USG, y generar un archivo VTK con distintas propiedades. Admite interpolacion de valores nodales a los vertices, para poder generar isosuperficies en Paraview",Documentos\model2vtk
+read_sens,"Lee el archivo .sen, normaliza las senswibilidades por grupo y las exporta en formato matriz. ",Documentos\read_sens
+Read_FlowRed_names,"Lee el archivo de reduccion de flujos de modflow-USG, y genera archivos en formato matriz con la reducciones de cada pozo. Además, lee archivo externo para asignar nombres a cada pozo (basado en nodos como npl + # CLN)",Documentos\Read_FlowRed_names
+matrix2list,"Transforma una matriz en una lista de items. Según input, puede escribir el numero de ""nodo"", a partir de cada columna",Documentos\matrix2list
+list2matrix,Transforma una lista en una matriz. ,Documentos\list2matrix
+CLN_cbb_to_PEST,"Lee un archivo clncbb (cuando se extrae el cbb de los CLNs aparte), y lee los bombeos de los CLN (WEL), para poder ser leidos por PEST. Es facilmente cambiable para poder extraer otra BC. ",Documentos\CLN_cbb_to_PEST
+get_prop.py,"Lee los archivos externos de propiedades (eje: ._kx), y las transforma en una matriz. ",Documentos\get_prop.py
+syntetic_pp_3d,"Lee los archivos externos de propiedades (eje: ._kx), y los modifica, reduciendo la propiedad en profundidad, según un factor de decrecimiento (en cuantos metros de profundidad cambia un orden de magnitud). Los factores de decrecimiento son leidos externamente, asi como la definición de cada UH y el espesor acumulado de cada unidad. Asume la misma cantidad de nodos por capa. ",Documentos\syntetic_pp_3d
+syntetic_pp_3d_tot,"Igual al anterior, pero considera la suma acumulada de espesores (profundidad total) sobre cada nodo para generar la reduccion.",Documentos\syntetic_pp_3d_tot
+Extract_props_2matrix,"Lee los archivos externos de propiedades (eje: ._kx), y las transforma en una matriz. Esta se puede relacionar en QGis con una malla con numeración de la capa 1. Asume la misma cantidad de nodos por capa",Documentos\Extract_props_2matrix
+process_results_zb,"Procesa los resultados de un Zone Budget obtenido con zonbudusg.exe, en el formato csv2",Documentos\process_results_zb
+get_head_data,"Obtiene los heads de todos los SP guardados en el .hds para varios nodos especificos (que pueden asociarse a pozos) a traves de un archivo externo, y los exporta en formato MACHI (Pozo/Fecha/Value)",Documentos\get_head_data
+read_cbb,"Lee distintas componentes de un .cbb, para cierto nodos especificos. Entrega la estructura basica para entender como leer un .cbb a traves de Flopy.",Documentos\read_cbb
+fix_porosity,"Cuando se corre Modflow con transporte, la porosidad siempre debe ser mayor al SY. Este script corrige los archivos ._po (externos de porosidad), para que esto siempre se cumpla (si se crean por separado con plproc, podria no cumplirse siempre).",Documentos\fix_porosity
+clean_par,Borra todos los archivos con la extension .par de una carpeta. Facilmente generalizable a cualquier tipo de extensión. ,Documentos\clean_par
+surface2UHG,"Si no se cuenta con Leapfrog, pero se tienen superficies que definen distintas UHG (raster), este script puede tomar posicion de un archivo XYZ, y asignarle las propiedades en base a dichas elevaciones.",Documentos\surface2UHG
+change_elevation,"Script hecho para poder conectar celdas dentro de una misma capa. Puede leer elevaciones desde un .dis o un archivo externo, o empezar con espesores especificos por capa. Asume la misma cantidad de nodos por capa. Hay que tener cuidado con zonas de mayor refinamiento, puesto que en esas zonas tiende a conectar mejor, por poca variacion de elevaciones",Documentos\change_elevation
+stop_wel_by_SP,Lee archivo .wel y asigna bombeo igual a 0 a todos los pozos que operen entre SP_in y SP_fin,Documentos\stop_wel_by_SP
+file_directory,"A partir de una carpeta base, scrapea los archivos y encuentra todos los archivos con las extensiones definidas, y luego escribe el directorio completo para cada uno de los archivos",Documentos\file_directory
+reduced_rei,"A partir de un archivo .rei y un listado de observaciones, reduce el archivo rei seleccionando únicamente aquellas observaciones deseadas",Documentos\reduced_rei
+lst2csv,"A partir del output modflow.lst, extrae la información de balance según lo solicitado en el archvio names_sel_TLS",Documentos\lst2csv
+Mat2List,"Convierte en lista una matriz, esto basado en el nombre de la primera fila, y el valor de la primera columna",Documentos\Mat2List
+build_drn_pkg,"Lee la información según nodo desde el archivo build_drain.xslx y luego construye un paquete .drn. Permite modificaciones de conductancia en el tiempo, entrega warnings y permite diferenciaciones por zona",Documentos\build_drn_pkg
+build_drn_pkg_v2,Lee la información según nodo desde el archivo build_drain.csv y luego construye un paquete .drn,Documentos\build_drn_pkg_v2
+Cambiar_Conductancias_DRN,Modifica un .drn ya creado a partir del archivo nodes_drain.csv. Este permite cambiar la conductividad de los nodos en nodes_drain en el tiempo.,Documentos\Cambiar_Conductancias_DRN
+model2vtu2,"Este script tiene como objetivo generar un archivo vtu para la representación 3D de un sistema hidrogeológico
+Modelo numérico en modflow.
+Tiene la capacidad de representar mallas no estructuradas. 
+A través de la lectura de los paquetes gsf, lpf, bas, dis, hds y con puede asignar resultados de modelos y
+propiedades del archivo 3D. 
+La salida se puede abrir a través de Paraview",Documentos\model2vtu2

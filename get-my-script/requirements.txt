@@ -1,3 +1,5 @@
 pandas
 sentence_transformers
 scikit-learn
+requests
+time

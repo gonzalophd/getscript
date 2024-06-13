@@ -8,6 +8,7 @@ import time
 
 # Load the CSV file
 url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB.csv'
+
 def load_original_data(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -17,7 +18,7 @@ def load_original_data(url):
         return None
 
 df = load_original_data(url)
-
+st.write(df)
 
 # Check if the 'Description' column exists
 if df is not None and 'Descripcion' not in df.columns:

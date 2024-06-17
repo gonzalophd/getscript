@@ -23,8 +23,8 @@ df = load_original_data(url)
 if df is not None and 'Descripcion' not in df.columns:
     st.error("La columna 'Descripcion' falta en el archivo script_DB. Por favor, checa este archivo.")
 else:
-    # Load a pre-trained multilingual SentenceTransformer model
-    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    # Load a pre-trained Spanish-only SentenceTransformer model
+    model = SentenceTransformer('sentence-transformers/distiluse-base-multilingual-cased-v2')
 
     # Precompute embeddings for existing descriptions
     df['embeddings'] = df['Descripcion'].apply(lambda x: model.encode(x))

@@ -35,4 +35,3 @@ Tiene la capacidad de representar mallas no estructuradas.
 A través de la lectura de los paquetes gsf, lpf, bas, dis, hds y con puede asignar resultados de modelos y
 propiedades del archivo 3D. 
 La salida se puede abrir a través de Paraview",Documentos\model2vtu2
-potatofile,para cambiar el archivo,Documentos\potatofile

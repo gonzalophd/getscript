@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer
 import time
 
 # Load the CSV file
-url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB.csv'
+url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.csv'
 
 @st.cache_data(ttl=86400)  # Cache for one day
 def load_original_data(url):

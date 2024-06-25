@@ -80,6 +80,6 @@ else:
                 st.write("### Lo mejor que encontré:")
                 st.dataframe(results_df)
 
-                st.write(f"**Me tomó:** {time_taken:.4f segundos")
+                st.write(f"**Me tomó:** {time_taken:.4f} segundos")
         else:
             st.write("Por favor escribe una descripción.")

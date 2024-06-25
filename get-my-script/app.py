@@ -26,7 +26,7 @@ if df is not None and 'Descripcion' not in df.columns:
 else:
     @st.cache_resource
     def load_model():
-        return SentenceTransformer('sentence-transformers/distiluse-base-multilingual-cased-v2')
+        return SentenceTransformer('sentence-transformers/LaBSE')
 
     model = load_model()
 
@@ -80,6 +80,6 @@ else:
                 st.write("### Lo mejor que encontré:")
                 st.dataframe(results_df)
 
-                st.write(f"**Me tomó:** {time_taken:.4f} segundos")
+                st.write(f"**Me tomó:** {time_taken:.4f segundos")
         else:
             st.write("Por favor escribe una descripción.")

@@ -9,6 +9,7 @@ import time
 # Load the CSV file
 url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB.csv'
 
+@st.cache_resource
 def load_original_data(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -23,11 +24,17 @@ df = load_original_data(url)
 if df is not None and 'Descripcion' not in df.columns:
     st.error("La columna 'Descripcion' falta en el archivo script_DB. Por favor, checa este archivo.")
 else:
-    # Load a pre-trained Spanish-only SentenceTransformer model
-    model = SentenceTransformer('sentence-transformers/distiluse-base-multilingual-cased-v2')
+    @st.cache_resource
+    def load_model():
+        return SentenceTransformer('sentence-transformers/distiluse-base-multilingual-cased-v2')
 
-    # Precompute embeddings for existing descriptions
-    df['embeddings'] = df['Descripcion'].apply(lambda x: model.encode(x))
+    model = load_model()
+
+    @st.cache_resource
+    def compute_embeddings(descriptions):
+        return [model.encode(description) for description in descriptions]
+
+    df['embeddings'] = compute_embeddings(df['Descripcion'].tolist())
 
     def find_best_matches(description, threshold=0.3, recommendation=False):
         start_time = time.time()
@@ -36,21 +43,17 @@ else:
         user_embedding = model.encode(description)
 
         # Calculate cosine similarities
-        cosine_similarities = cosine_similarity([user_embedding], list(df['embeddings']))[0]
+        cosine_similarities = cosine_similarity([user_embedding], df['embeddings'].tolist())[0]
 
         # Sort indices based on similarity scores in descending order
         sorted_indices = cosine_similarities.argsort()[::-1]
 
         # Filter out matches below the threshold
-        matches = []
-        for idx in sorted_indices:
-            if cosine_similarities[idx] >= threshold:
-                matches.append((df.iloc[idx]['Script Name'], cosine_similarities[idx]))
+        matches = [(df.iloc[idx]['Script Name'], cosine_similarities[idx]) for idx in sorted_indices if cosine_similarities[idx] >= threshold]
 
         # If no matches are found and recommendation is True, provide top 2 or 3 closest matches regardless of threshold
         if not matches and recommendation:
-            for idx in sorted_indices[:3]:
-                matches.append((df.iloc[idx]['Script Name'], cosine_similarities[idx]))
+            matches = [(df.iloc[idx]['Script Name'], cosine_similarities[idx]) for idx in sorted_indices[:3]]
 
         end_time = time.time()
         time_taken = end_time - start_time

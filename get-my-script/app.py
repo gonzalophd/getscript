@@ -90,6 +90,9 @@ if st.button("Get My Script!"):
                     "https://media.giphy.com/media/3o6gDUfmjGOPlZRave/giphy.gif",
                     "https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif",
                     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTR0cmgzN2hpMXBsdWgxN2xpeWpvaWlnYmJ0NmhwMDhmZzc4NGIyZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3nbxypT20Ulmo/giphy.webp"
+                    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzFrc2k5YWY5dmhlNGw4aGNwMnRrOGVuczliYzdtMWJ1cTVlZ3V4cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xULW8vRQrlIPRfiEog/giphy.webp"
+                    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWRoNW96OTgyODBvdTRqZTRtM3Z5OWVwa2sxdm16Y29sb2dyNjh2MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WsNbxuFkLi3IuGI9NU/giphy.webp"
+                    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjU5dDF2a3ZudHF3NW8zNTVjemt6eHUwdmx4dmlmMGFjeXU3anNqayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kspVl6FzbdblOMKRmM/giphy.webp"
                     
                 ]
                 st.image(random.choice(coffee_gifs))

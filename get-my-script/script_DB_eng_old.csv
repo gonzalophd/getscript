@@ -1,0 +1,37 @@
+﻿Script Name,Description,Path
+Create_Obs_GWV_h,"Read two files: Well Information (Can have multiple columns) and observations in MACHI format (Well/Date/Value), and generates an importable GWV file with the observation wells.",Documentos\Create_Obs_GWV_h
+elevmatrix2GWV,"It reads an elevation matrix (one column per layer, assumes the same number of nodes per layer) and generates an importable top and bottom file, in the node/Elev format, importable directly into GWV:",Documentos\elevmatrix2GWV
+script_lst2csv_sel,"It reads an LST file, and generates a summary file with the balance of the components stored in the LST file. You can read an external file with the specific balance sheet components that you want to read (relevant). ",Documentos\script_lst2csv_sel
+get_hds_SPXX,"It reads an .hds file, and extracts the value of the heads for all the nodes, in a specific SP. This can serve as an initial condition for another file",Documentos\get_hds_SPXX
+get_hds_cln_SPXX,"It reads a .cln_hds file (when you choose to extract the hds from the CLN appended), and extracts the value of the heads for all nodes, in a specific SP. This can serve as an initial condition for another file",Documentos\get_hds_cln_SPXX
+model2vtk,"Script designed to read files from a Modflow-USG model, and generate a VTK file with different properties. Supports interpolation of nodal values to vertices, so that isosurfaces can be generated in Paraview",Documentos\model2vtk
+read_sens,"It reads the .sen file, normalizes the sensitivities by group, and exports them in matrix format.",Documentos\read_sens
+Read_FlowRed_names,"It reads the flow reduction file from modflow-USG, and generates files in matrix format with the reductions of each well. Also, read external file to name each well (based on nodes such as npl + # CLN)",Documentos\Read_FlowRed_names
+matrix2list,"Transforms an array into a list of items. Based on input, you can type the number of ""node"" from each column",Documentos\matrix2list
+list2matrix,Transform a list into an array.,Documentos\list2matrix
+CLN_cbb_to_PEST,"It reads a clncbb file (when extracting the cbb from the separate CLNs), and reads the CLN pumps (WEL), so that they can be read by PEST. It is easily changeable to be able to extract another BC. ",Documentos\CLN_cbb_to_PEST
+get_prop.py,"It reads the external property files (e.g., ._kx), and transforms them into an array.",Documentos\get_prop.py
+syntetic_pp_3d,"It reads the external property files (e.g.: ._kx), and modifies them, reducing the property in depth, according to a decrease factor (in how many meters of depth it changes an order of magnitude). The degrowth factors are read externally, as well as the definition of each UH and the cumulative thickness of each unit. It assumes the same number of nodes per layer. ",Documentos\syntetic_pp_3d
+syntetic_pp_3d_tot,"Same as above, but considers the cumulative sum of thicknesses (total depth) over each node to generate the reduction.",Documentos\syntetic_pp_3d_tot
+Extract_props_2matrix,"It reads the external property files (e.g., ._kx), and transforms them into an array. This can be related in QGis to a mesh with Layer 1 numbering. Assumes the same number of nodes per layer",Documentos\Extract_props_2matrix
+process_results_zb,"Processes the results of a Zone Budget obtained with zonbudusg.exe, in the csv2 format",Documentos\process_results_zb
+get_head_data,"It obtains the heads of all SPs saved in the .hds for several specific nodes (which can be associated with wells) through an external file, and exports them in MACHI format (Well/Date/Value)",Documentos\get_head_data
+read_cbb,"It reads different components of a .cbb, for certain specific nodes. It provides the basic structure to understand how to read a .cbb through Flopy.",Documentos\read_cbb
+fix_porosity,"When running Modflow with transport, the porosity should always be greater than the SY. This script fixes ._po (external porosity) files, so that this is always true (if they are created separately with plproc, it might not always be true).",Documentos\fix_porosity
+clean_par,Deletes all files with the .par extension of a folder. Easily generalizable to any type of extension. ,Documentos\clean_par
+surface2UHG,"If you don't have Leapfrog, but you have surfaces that define different UHGs (raster), this script can take position from an XYZ file, and assign properties to it based on those elevations.",Documentos\surface2UHG
+change_elevation,"A script made to be able to connect cells within the same layer. You can read elevations from a .dis or external file, or start with specific thicknesses per layer. It assumes the same number of nodes per layer. Be careful with areas of greater refinement, since in these areas it tends to connect better, due to little variation in elevations",Documentos\change_elevation
+stop_wel_by_SP,Reads .wel file and assigns pumping equal to 0 to all wells operating between SP_in and SP_fin,Documentos\stop_wel_by_SP
+file_directory,"Starting from a base folder, scrape the files and find all the files with the defined extensions, and then write the entire directory for each of the files",Documentos\file_directory
+reduced_rei,"From a .rei file and a list of observations, reduce the rei file by selecting only those desired observations",Documentos\reduced_rei
+lst2csv,"From the output modflow.lst, it extracts the balance information as requested in the names_sel_TLS file",Documentos\lst2csv
+Mat2List,"Converts an array into a list, based on the name of the first row, and the value of the first column",Documentos\Mat2List
+build_drn_pkg,"It reads the node-based information from the build_drain.xslx file and then constructs a .drn package. Allows conductance modifications over time, provides warnings and allows differentiations by zone",Documentos\build_drn_pkg
+build_drn_pkg_v2,Reads the node-based information from the build_drain.csv file and then constructs a .drn package,Documentos\build_drn_pkg_v2
+Cambiar_Conductancias_DRN,Modify an already created .drn from the nodes_drain.csv file. This allows the conductivity of the nodes to be changed in nodes_drain over time.,Documentos\Cambiar_Conductancias_DRN
+model2vtu2,"This script aims to generate a vtu file for the 3D representation of a hydrogeological system
+Numerical model in modflow.
+It has the ability to represent unstructured meshes. 
+By reading the gsf, lpf, bas, dis, hds and con packets you can assign results from models and
+3D file properties. 
+The output can be opened through Paraview",Documentos\model2vtu2

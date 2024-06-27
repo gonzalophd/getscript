@@ -8,6 +8,22 @@ import numpy as np
 import time
 import random
 
+# Function to navigate to a different page
+def navigate_to(page):
+    st.query_params(page=page)
+
+# Page routing
+query_params = st.query_params
+if 'page' in query_params:
+    page = query_params['page'][0]
+else:
+    page = 'main'
+
+if page == 'explore':
+    # Run the explore_db page script
+    import pages.explore_db
+    st.stop()
+
 # Load the CSV file
 url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.csv'
 
@@ -51,6 +67,11 @@ if 'embeddings' not in st.session_state and df is not None and 'Description' in 
 
 # Streamlit app interface
 st.title("Get my Script!")
+
+# Add the "No Luck? Explore the DB yourself" button
+if st.button("No Luck? Explore the DB yourself"):
+    navigate_to("explore")
+
 st.write("This app helps you find the script that best matches your needs.")
 
 # Initialize session state for user description and recommendation
@@ -94,7 +115,9 @@ if st.button("Get My Script!"):
                     "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWRoNW96OTgyODBvdTRqZTRtM3Z5OWVwa2sxdm16Y29sb2dyNjh2MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WsNbxuFkLi3IuGI9NU/giphy.webp",
                     "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjU5dDF2a3ZudHF3NW8zNTVjemt6eHUwdmx4dmlmMGFjeXU3anNqayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kspVl6FzbdblOMKRmM/giphy.webp",
                     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWg3NTlocWFjYjJhcDViM3A3Z2k4N3Z2ZWtyaW1hNXZlemluc3lmMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gEKz4VLX7fQlsl8SFE/giphy.webp",
-                    ]
+                    "https://media.giphy.com/media/l4pTfx2qLszoacZRS/giphy.gif",
+                    "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif"
+                ]
                 st.image(random.choice(coffee_gifs))
             else:
                 best_match = matches[0]

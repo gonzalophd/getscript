@@ -92,7 +92,7 @@ if st.button("Get My Script!"):
                     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTR0cmgzN2hpMXBsdWgxN2xpeWpvaWlnYmJ0NmhwMDhmZzc4NGIyZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3nbxypT20Ulmo/giphy.webp",
                     "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzFrc2k5YWY5dmhlNGw4aGNwMnRrOGVuczliYzdtMWJ1cTVlZ3V4cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xULW8vRQrlIPRfiEog/giphy.webp",
                     "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWRoNW96OTgyODBvdTRqZTRtM3Z5OWVwa2sxdm16Y29sb2dyNjh2MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WsNbxuFkLi3IuGI9NU/giphy.webp",
-                    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjU5dDF2a3ZudHF3NW8zNTVjemt6eHUwdmx4dmlmMGFjeXU3anNqayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kspVl6FzbdblOMKRmM/giphy.webp",
+                    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWg3NTlocWFjYjJhcDViM3A3Z2k4N3Z2ZWtyaW1hNXZlemluc3lmMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kspVl6FzbdblOMKRmM/giphy.webp",
                     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWg3NTlocWFjYjJhcDViM3A3Z2k4N3Z2ZWtyaW1hNXZlemluc3lmMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gEKz4VLX7fQlsl8SFE/giphy.webp",
                     ]
                 st.image(random.choice(coffee_gifs))
@@ -103,6 +103,11 @@ if st.button("Get My Script!"):
                 st.dataframe(best_match_df)
                 st.write(f"**Description:** {best_match[3]}")
                 
+                copy_link_html = f"""
+                <a href="{best_match[1]}" target="_blank" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Open Script</a>
+                """
+                st.markdown(copy_link_html, unsafe_allow_html=True)
+                
                 if len(matches) > 1:
                     remaining_matches = matches[1:]
                     results_df = pd.DataFrame(remaining_matches, columns=["Script Name", "Path", "Similarity Score", "Description"])
@@ -111,6 +116,10 @@ if st.button("Get My Script!"):
                     for index, row in results_df.iterrows():
                         with st.expander(f"Description for {row['Script Name']}"):
                             st.write(row['Description'])
+                            open_script_html = f"""
+                            <a href="{row['Path']}" target="_blank" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Open Script</a>
+                            """
+                            st.markdown(open_script_html, unsafe_allow_html=True)
                 st.write(f"**Time taken:** {time_taken:.4f} seconds")
     else:
         st.write("Please enter a description.")

@@ -9,13 +9,15 @@ import time
 import random
 
 # Load the CSV file
-url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.csv'
+# url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.csv'
+url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.feather'
 
 @st.cache_data(ttl=86400)  # Cache for one day
 def load_original_data(url):
     response = requests.get(url)
     if response.status_code == 200:
-        df = pd.read_csv(StringIO(response.text))
+        df = pd.read_feather(StringIO(response.text))
+        # df = pd.read_csv(StringIO(response.text))
         # Convert all relevant columns to lowercase
         df['Description'] = df['Description'].str.lower()
         df['Category/Software'] = df['Category/Software'].str.lower()

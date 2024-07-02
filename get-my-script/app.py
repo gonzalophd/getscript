@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 from io import StringIO
+import io
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import numpy as np
@@ -9,22 +10,22 @@ import time
 import random
 
 # Load the CSV file
-# url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.csv'
+
 url = 'https://raw.githubusercontent.com/gonzalophd/getscript/main/get-my-script/script_DB_eng.feather'
 
 @st.cache_data(ttl=86400)  # Cache for one day
 def load_original_data(url):
     response = requests.get(url)
     if response.status_code == 200:
-        df = pd.read_feather(StringIO(response.text))
-        # df = pd.read_csv(StringIO(response.text))
+        # Read the response content as bytes
+        df = pd.read_feather(io.BytesIO(response.content))
         # Convert all relevant columns to lowercase
         df['Description'] = df['Description'].str.lower()
         df['Category/Software'] = df['Category/Software'].str.lower()
         df['Keywords'] = df['Keywords'].str.lower()
         return df
     else:
-        st.error("Failed to download the database from Github.")
+        print("Failed to download the database from Github.")
         return None
 
 df = load_original_data(url)

@@ -35,14 +35,17 @@ combined_filter = st.text_input("Filter by comma separated keywords:")
 filtered_df = df.copy()  # Use a copy of the dataframe to apply filters
 
 if combined_filter:
-    filtered_df = filtered_df[filtered_df['Combined'].str.contains(combined_filter, case=False, na=False)]
+    keywords = [keyword.strip() for keyword in combined_filter.split(',')]
+    for keyword in keywords:
+        filtered_df = filtered_df[filtered_df['Combined'].str.contains(keyword, case=False, na=False)]
+
 
 # Display filtered data
 if not filtered_df.empty:
     st.write("### Filtered Scripts")
     for index, row in filtered_df.iterrows():
         st.markdown(f"<h2 style='font-size: 24px;'>{row['Script Name']}</h2>", unsafe_allow_html=True)
-        st.write(f"{row['Combined']}")
+        st.write(f"{row['Description']}")
         button_html = f"""
         <a href="{row['Path']}" target="_blank" style="background-color: #4CAF50; color: white; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Open Script</a>
         """

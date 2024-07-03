@@ -23,6 +23,7 @@ def load_original_data(url):
         df['Description'] = df['Description'].str.lower()
         df['Category/Software'] = df['Category/Software'].str.lower()
         df['Keywords'] = df['Keywords'].str.lower()
+        df['Combined'] = df['Description'] + ' ' + df['Category/Software'] + ' ' + df['Keywords']
         return df
     else:
         print("Failed to download the database from Github.")
@@ -42,8 +43,6 @@ def compute_embeddings(combined_texts, _model):
     embeddings = _model.encode(combined_texts, batch_size=32, show_progress_bar=False)  # Adjust batch_size based on your available memory
     return np.array(embeddings)
 
-# Combine relevant columns into a single text for each row
-df['Combined'] = df['Description'] + ' ' + df['Category/Software']*2 + ' ' + df['Keywords']*2
 
 # Load model as a part of session state to ensure it's only loaded once
 if 'model' not in st.session_state:
